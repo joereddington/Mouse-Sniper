@@ -1,9 +1,6 @@
 import tkinter as tk
-import keyboard 
 import pyautogui
 from PIL import ImageTk, Image
-
-image_window = tk.Tk()
 
 def get_screenshot():
     img = pyautogui.screenshot()
@@ -11,19 +8,20 @@ def get_screenshot():
     img = ImageTk.PhotoImage(img)
     return img
 
-def show_imge():
-    image_window.geometry("400x225")
-    panel = tk.Label(image_window, image=get_screenshot())
-    panel.pack(side="bottom", fill="both", expand="yes")
-    image_window.after(1000,keyboard_stuff)
-    image_window.mainloop()
+root = tk.Tk()
+root.geometry("400x225")
 
-def keyboard_stuff():
-    while True: 
-       if keyboard.read_key() == "p":
-            print("you pressed p") 
-            panel = tk.Label(image_window, image=get_screenshot())
-            panel.pack(side="bottom", fill="both", expand="yes")
-            continue
+img = get_screenshot()
+panel = tk.Label(root, image=img)
+panel.pack(side="bottom", fill="both", expand="yes")
 
-show_imge() 
+def callback(e):
+    img2 = get_screenshot()
+    panel.configure(image=img2)
+    panel.image = img2
+
+root.bind("<Return>", callback)
+root.mainloop()
+
+
+# https://stackoverflow.com/a/3482156/170243 was extremely useful. 
