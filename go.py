@@ -7,8 +7,7 @@ miny=0
 (maxx,maxy)=pyautogui.size()
 
 def get_screenshot():
-    print(minx,miny,maxx,maxy)
-    img = pyautogui.screenshot(region=(minx,miny,maxx,maxy))
+    img = pyautogui.screenshot(region=(minx,miny,maxx-minx,maxy-miny))#because the last two are heigh and width
     img = img.resize((400, 225), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(img)
     return img
@@ -20,61 +19,115 @@ img = get_screenshot()
 panel = tk.Label(root, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
 
-def callback(e):
+def update_screen(e):
     img2 = get_screenshot()
     panel.configure(image=img2)
     panel.image = img2
 
-def seven(e): 
-    print("seven was pressed") 
-    global minx,maxx,miny,maxy
-    left()
-    maxy=maxy/3
-    callback(e)
-
-def nine(e):
-    print("nine was pressed") 
-    global minx,maxx,miny,maxy
-    right()
-    maxy=maxy/3
-    callback(e)
 
 
 def left():
     global minx,maxx
-    #minx stays, maxx changes 
-    maxx=minx+((maxx-minx)/3)
+    width=maxx-minx
+    new_width=width/3
+    maxx=minx+new_width
     
 def right():
     global minx,maxx
     #maxx stays, minx changes 
     minx=minx+((maxx-minx)/3*2)
 
-def zoom(e): 
-    print("five was pressed") 
-    global minx,maxx,miny,maxy
-    new_minx=minx+((maxx-minx)/3)
-    new_miny=miny+((maxy-miny)/3)
-    new_maxx=maxx-((maxx-minx)/3)
-    new_maxy=maxy-((maxy-miny)/3)
-    (minx,miny,maxx,maxy)= (new_minx,new_miny,new_maxx,new_maxy)
-    callback(e)
+def ahead():
+    global minx,maxx
+    width=maxx-minx
+    new_width=width/3
+    minx=minx+new_width
+    maxx=maxx-new_width
+
+def top():
+    global maxy
+    maxy=maxy/3
+
+def middle(): 
+    global miny,maxy
+    height=maxy-miny
+    new_height=height/3
+    miny=miny+new_height
+    maxy=maxy-new_height
+
+def bottom():
+    global miny,maxy
+    height=maxy-miny
+    new_height=height/3
+    miny=miny+new_height+new_height
+
+     
+def nine(e):
+    right()
+    top()
+    update_screen(e)
+
+def eight(e):
+    top()
+    middle()
+    update_screen(e)
+
+def seven(e): 
+    left()
+    top()
+    update_screen(e)
+
+def six(e):
+    right()
+    middle()
+    update_screen(e)
+
+def five(e): 
+    ahead()
+    middle()
+    update_screen(e)
+
+def four(e):
+    left()
+    middle()
+    update_screen(e)
+
+
+def three(e):
+    right()
+    bottom()
+    update_screen(e)
+
+def two(e): 
+    ahead()
+    bottom()
+    update_screen(e)
+
+def one(e):
+    left()
+    bottom()
+    update_screen(e)
+
 
 def reset(e):
-    print("reset")
     global minx,maxx,miny,maxy
     minx=0
     miny=0
     (maxx,maxy)=pyautogui.size()
-    callback(e)
+    update_screen(e)
     
 
-root.bind("<Return>", callback)
-root.bind("5", zoom)
+root.bind("<Return>", update_screen)
+root.bind("1", one)
+root.bind("2", two)
+root.bind("3", three)
+root.bind("4", four)
+root.bind("5", five)
+root.bind("6", six)
 root.bind("7", seven)
+root.bind("8", eight)
 root.bind("9", nine)
-root.bind("4", reset)
+root.bind("-", reset)
 root.mainloop()
-
 
 # https://stackoverflow.com/a/3482156/170243 was extremely useful. 
