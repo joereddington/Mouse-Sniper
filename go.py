@@ -25,6 +25,31 @@ def callback(e):
     panel.configure(image=img2)
     panel.image = img2
 
+def seven(e): 
+    print("seven was pressed") 
+    global minx,maxx,miny,maxy
+    left()
+    maxy=maxy/3
+    callback(e)
+
+def nine(e):
+    print("nine was pressed") 
+    global minx,maxx,miny,maxy
+    right()
+    maxy=maxy/3
+    callback(e)
+
+
+def left():
+    global minx,maxx
+    #minx stays, maxx changes 
+    maxx=minx+((maxx-minx)/3)
+    
+def right():
+    global minx,maxx
+    #maxx stays, minx changes 
+    minx=minx+((maxx-minx)/3*2)
+
 def zoom(e): 
     print("five was pressed") 
     global minx,maxx,miny,maxy
@@ -35,8 +60,20 @@ def zoom(e):
     (minx,miny,maxx,maxy)= (new_minx,new_miny,new_maxx,new_maxy)
     callback(e)
 
+def reset(e):
+    print("reset")
+    global minx,maxx,miny,maxy
+    minx=0
+    miny=0
+    (maxx,maxy)=pyautogui.size()
+    callback(e)
+    
+
 root.bind("<Return>", callback)
 root.bind("5", zoom)
+root.bind("7", seven)
+root.bind("9", nine)
+root.bind("4", reset)
 root.mainloop()
 
 
