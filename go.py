@@ -6,6 +6,13 @@ minx=0
 miny=0
 (maxx,maxy)=pyautogui.size()
 
+
+def move_mouse(): 
+#moves mouse to the middle of the x's and y's 
+    x=(maxx+minx)/2
+    y=(maxy+miny)/2
+    pyautogui.moveTo(x,y)
+
 def get_screenshot():
     img = pyautogui.screenshot(region=(minx,miny,maxx-minx,maxy-miny))#because the last two are heigh and width
     img = img.resize((400, 225), Image.ANTIALIAS)
@@ -20,6 +27,7 @@ panel = tk.Label(root, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
 
 def update_screen(e):
+    move_mouse()
     img2 = get_screenshot()
     panel.configure(image=img2)
     panel.image = img2
@@ -117,7 +125,11 @@ def reset(e):
     update_screen(e)
     
 
-root.bind("<Return>", update_screen)
+def click(e): 
+    print("clicked") 
+    pyautogui.click()
+
+root.bind("<Return>", click)
 root.bind("1", one)
 root.bind("2", two)
 root.bind("3", three)
