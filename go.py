@@ -6,7 +6,6 @@ minx=0
 miny=0
 (maxx,maxy)=pyautogui.size()
 
-
 def move_mouse(): 
 #moves mouse to the middle of the x's and y's 
     x=(maxx+minx)/2
@@ -32,91 +31,6 @@ def update_screen(e):
     panel.configure(image=img2)
     panel.image = img2
 
-
-
-def left():
-    global minx,maxx
-    width=maxx-minx
-    new_width=width/3
-    maxx=minx+new_width
-    
-def right():
-    global minx,maxx
-    #maxx stays, minx changes 
-    minx=minx+((maxx-minx)/3*2)
-
-def ahead():
-    global minx,maxx
-    width=maxx-minx
-    new_width=width/3
-    minx=minx+new_width
-    maxx=maxx-new_width
-
-def top():
-    global maxy
-    maxy=maxy/3
-
-def middle(): 
-    global miny,maxy
-    height=maxy-miny
-    new_height=height/3
-    miny=miny+new_height
-    maxy=maxy-new_height
-
-def bottom():
-    global miny,maxy
-    height=maxy-miny
-    new_height=height/3
-    miny=miny+new_height+new_height
-
-     
-def nine(e):
-    right()
-    top()
-    update_screen(e)
-
-def eight(e):
-    top()
-    middle()
-    update_screen(e)
-
-def seven(e): 
-    left()
-    top()
-    update_screen(e)
-
-def six(e):
-    right()
-    middle()
-    update_screen(e)
-
-def five(e): 
-    ahead()
-    middle()
-    update_screen(e)
-
-def four(e):
-    left()
-    middle()
-    update_screen(e)
-
-
-def three(e):
-    right()
-    bottom()
-    update_screen(e)
-
-def two(e): 
-    ahead()
-    bottom()
-    update_screen(e)
-
-def one(e):
-    left()
-    bottom()
-    update_screen(e)
-
-
 def reset(e):
     global minx,maxx,miny,maxy
     minx=0
@@ -125,21 +39,46 @@ def reset(e):
     update_screen(e)
     
 
+def key_pressed(e):
+    global minx,maxx,miny,maxy
+    height=maxy-miny
+    new_height=height/3
+    width=maxx-minx
+    new_width=width/3
+    print(e.char)
+    if (e.char in "123"):
+        miny=miny+new_height+new_height
+    if (e.char in "456"):
+        miny=miny+new_height
+        maxy=maxy-new_height
+    if (e.char in "789"):
+        maxy=maxy/3
+    if (e.char in "741"):
+        maxx=minx+new_width
+    if (e.char in "852"):
+        minx=minx+new_width
+        maxx=maxx-new_width
+    if (e.char in "963"):
+        minx=minx+((maxx-minx)/3*2)
+    update_screen(e)
+
+
 def click(e): 
     print("clicked") 
     pyautogui.click()
+    pyautogui.click()#clicking twice because the first makes the target application active. 
 
 root.bind("<Return>", click)
-root.bind("1", one)
-root.bind("2", two)
-root.bind("3", three)
-root.bind("4", four)
-root.bind("5", five)
-root.bind("6", six)
-root.bind("7", seven)
-root.bind("8", eight)
-root.bind("9", nine)
-root.bind("-", reset)
+root.bind("1", key_pressed)
+root.bind("2", key_pressed)
+root.bind("3", key_pressed)
+root.bind("4", key_pressed)
+root.bind("5", key_pressed)
+root.bind("6", key_pressed)
+root.bind("7", key_pressed)
+root.bind("8", key_pressed)
+root.bind("9", key_pressed)
+root.bind("0", reset)
 root.mainloop()
 
 # https://stackoverflow.com/a/3482156/170243 was extremely useful. 
