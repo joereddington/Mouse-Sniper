@@ -22,8 +22,13 @@ At any point, press '-' to reset the zoom.
  - [ ]  proper 3 by 3 overlay in the preview window
  - [x]  Improve speed - cache the screenshot for example. 
  - [ ]  settings page: always on top? preview window off? 
+ - [ ]  The screen should indicate (colour of grid) if the program is active. 
+ - [x]  Always on top
  - [ ]  Option to automatically focus on window
  - [ ]  Hotkey to start
  - [ ]  put into stackexchange code review. 
  - [x]  refactor a whole lot.        
  - [x]  Fix the 'tile cannot extend outside image' bug.  
+ - [ ]  It would be good if the screenshot periodically refreshed. 
+ - [x]  On-mouse over would be nice. 
+ - [ ]  Screenshot should refresh whenever you tap to the system. 

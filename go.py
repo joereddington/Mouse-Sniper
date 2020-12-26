@@ -1,51 +1,50 @@
 import tkinter as tk
 import pyautogui
-from PIL import ImageTk, Image
+from PIL import ImageTk, Image, ImageDraw
 
 minx=0
 miny=0
 (maxx,maxy)=pyautogui.size()
-ori_img=0
+ori_img=pyautogui.screenshot()
 
 
 def move_mouse(): 
-#moves mouse to the middle of the x's and y's 
     x=(maxx+minx)/2
     y=(maxy+miny)/2
     pyautogui.moveTo(x,y)
 
-def get_screenshot():
-    global ori_img
-    ori_img = pyautogui.screenshot()
-    img = ori_img.resize((400, 225), Image.ANTIALIAS)
-    img = ImageTk.PhotoImage(img)
-    return img
-
-
 def update_image():
+    win_height=400
+    win_width=225
+    colour="red"
     global ori_img
     global minx,maxx,miny,maxy
     (height,width)=pyautogui.size()
     img=ori_img.crop((minx,miny,maxx,maxy))
-    img = img.resize((400, 225), Image.ANTIALIAS)
+    img = img.resize((win_height, win_width), Image.ANTIALIAS)
+    draw= ImageDraw.Draw(img)
+    draw.line((win_height/3,0,win_height/3,win_width),fill=colour, width=3)
+    draw.line((win_height/3*2,0,win_height/3*2,win_width),fill=colour, width=3)
+    draw.line((0,win_width/3*2,win_height,win_width/3*2),fill=colour, width=3)
+    draw.line((0,win_width/3,win_height,win_width/3),fill=colour, width=3)
     img = ImageTk.PhotoImage(img)
     return img
 
 
 def update_screen(e):
     move_mouse()
-    img2 = update_image()
-    panel.configure(image=img2)
-    panel.image = img2
+    img = update_image()
+    panel.configure(image=img)
+    panel.image = img
 
 
 def reset(e):
-    global minx,maxx,miny,maxy
+    global minx,maxx,miny,maxy,ori_img
     minx=0
     miny=0
     (maxx,maxy)=pyautogui.size()
+    ori_img = pyautogui.screenshot()
     update_screen(e)
-    get_screenshot()#refreshes the ori_img
     
 def key_pressed(e):
     global minx,maxx,miny,maxy
@@ -80,16 +79,23 @@ def key_pressed(e):
 def click(e): 
     print("clicked") 
     pyautogui.click()
-    pyautogui.click()#clicking twice because the first makes the target application active. 
-    get_screenshot()#refreshes the ori_img
+    reset(e)
 
+def doubleclick(e): 
+    print("doubleclicked") 
+    pyautogui.click()
+    pyautogui.click()#clicking twice because the first makes the target application active. 
+    reset(e)
 
 root = tk.Tk()
-root.geometry("400x225")
-img = get_screenshot()
+root.wm_attributes("-topmost", 1) #from https://stackoverflow.com/questions/3926655/how-to-keep-a-python-window-on-top-of-all-others-python-3-1
+root.title("Mouse Sniper")
+root.geometry("400x225+0+800")#this is hardcoded and shouldn't be
+img = update_image()
 panel = tk.Label(root, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
-root.bind("<KP_Enter>", click)
+root.bind("<KP_Enter>", doubleclick)
+root.bind("+", click)
 root.bind("1", key_pressed)
 root.bind("2", key_pressed)
 root.bind("3", key_pressed)
