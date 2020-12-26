@@ -24,6 +24,7 @@ At any point, press '-' to reset the zoom.
  - [ ]  settings page: always on top? preview window off? 
  - [ ]  Option to automatically focus on window
  - [ ]  Hotkey to start
+ - [ ]  Applications need two clicks, but the top menu needs one click.... 
  - [ ]  put into stackexchange code review. 
  - [x]  refactor a whole lot.        
  - [x]  Fix the 'tile cannot extend outside image' bug.  
