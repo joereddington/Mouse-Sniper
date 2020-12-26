@@ -59,21 +59,22 @@ def key_pressed(e):
     if new_height<3:
         print("Don't want to zoom more")
         return
-    print("{}: {},{},{},{}".format(e.char,minx,maxx,miny,maxy))
+    print("{}:{}<x<{},{}<y<{},new_width,new_height".format(e.char,minx,maxx,miny,maxy))
     if (e.char in "123"):
         miny=miny+new_height+new_height
     if (e.char in "456"):
         miny=miny+new_height
         maxy=maxy-new_height
     if (e.char in "789"):
-        maxy=int(maxy/3)
+        maxy=miny+new_height
     if (e.char in "741"):
         maxx=minx+new_width
     if (e.char in "852"):
         minx=minx+new_width
         maxx=maxx-new_width
     if (e.char in "963"):
-        minx=minx+((maxx-minx)/3*2)
+        minx=minx+new_width+new_width
+    print("Now {}:{}<x<{},{}<y<{},new_width,new_height".format(e.char,minx,maxx,miny,maxy))
     update_screen(e)
 
 def click(e): 
