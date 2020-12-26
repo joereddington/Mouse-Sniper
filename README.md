@@ -14,16 +14,16 @@ At any point, press '-' to reset the zoom.
 
 
 # TODO 
-* Multiple monitor support
-* double click, drag, second click ect 
-* Click in the preview window. 
-* Keep the application selected
-* Zoom out one level  
-* proper 3 by 3 overlay in the preview window
-* Improve speed - cache the screenshot for example. 
-* settings page: always on top? preview window off? 
-* Option to automatically focus on window
-* Hotkey to start
-* put into stackexchange code review. 
-* refactor a whole lot.        
-* Fix the 'tile cannot extend outside image' bug.  
+ - [ ]  Multiple monitor support
+ - [ ]  double click, drag, second click ect 
+ - [ ]  Click in the preview window. 
+ - [ ]  Keep the application selected
+ - [ ]  Zoom out one level  
+ - [ ]  proper 3 by 3 overlay in the preview window
+ - [x]  Improve speed - cache the screenshot for example. 
+ - [ ]  settings page: always on top? preview window off? 
+ - [ ]  Option to automatically focus on window
+ - [ ]  Hotkey to start
+ - [ ]  put into stackexchange code review. 
+ - [x]  refactor a whole lot.        
+ - [x]  Fix the 'tile cannot extend outside image' bug.  
