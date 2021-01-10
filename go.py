@@ -87,6 +87,10 @@ def doubleclick(e):
     pyautogui.click()#clicking twice because the first makes the target application active. 
     reset(e)
 
+def on_focus_in(e): 
+    print("We have focus!") 
+    reset(e) 
+
 root = tk.Tk()
 root.wm_attributes("-topmost", 1) #from https://stackoverflow.com/questions/3926655/how-to-keep-a-python-window-on-top-of-all-others-python-3-1
 root.title("Mouse Sniper")
@@ -106,6 +110,9 @@ root.bind("7", key_pressed)
 root.bind("8", key_pressed)
 root.bind("9", key_pressed)
 root.bind("0", reset)
+root.bind("<FocusIn>", on_focus_in)
 root.mainloop()
 
 # https://stackoverflow.com/a/3482156/170243 was extremely useful. 
+# https://stackoverflow.com/questions/46567324/tkinter-window-focus-loss-event 
+
