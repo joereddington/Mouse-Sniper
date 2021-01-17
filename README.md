@@ -15,21 +15,34 @@ At any point, press '-' to reset the zoom.
 
 # TODO 
  - [ ]  Multiple monitor support
- - [ ]  double click, drag, second click ect 
+ - [x]  double click, 
+ - [ ]  drag, second click ect 
  - [ ]  Click in the preview window. 
  - [ ]  Keep the application selected
  - [ ]  Zoom out one level  
- - [ ]  proper 3 by 3 overlay in the preview window
+ - [x]  proper 3 by 3 overlay in the preview window
  - [x]  Improve speed - cache the screenshot for example. 
- - [ ]  settings page: always on top? preview window off? 
+ - [ ]  settings from command line: always on top? preview window off? 
  - [ ]  The screen should indicate (colour of grid) if the program is active. 
  - [x]  Always on top
- - [ ]  Option to automatically focus on window
+ - [ ]  Option to automatically focus on application window
  - [ ]  Hotkey to start
- - [ ]  Applications need two clicks, but the top menu needs one click.... 
+ - [x]  Applications need two clicks, but the top menu needs one click.... 
  - [ ]  put into stackexchange code review. 
  - [x]  refactor a whole lot.        
  - [x]  Fix the 'tile cannot extend outside image' bug.  
  - [ ]  It would be good if the screenshot periodically refreshed. 
  - [x]  On-mouse over would be nice. 
- - [ ]  Screenshot should refresh whenever you tap to the system. 
+ - [x]  Screenshot should refresh whenever you tap to the system. 
+ - [x]  Second set of minor grids to so that it's obvious what button you are going to press next 
+ - [ ]  Do a profile to work out where the time is taken. 
+ - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
+
+
+# Statistics 
+I'd like a statistics module - selfishly I'd like to know how many clicks I'm saving from WhatPulse, but I'd also like some general information like: 
+ * how many numbers do I have to press to reach the correct location
+ * How much time is taken per mouse click? 
+ * Is it significantly faster when I do two number presses per refresh? 
+
+
