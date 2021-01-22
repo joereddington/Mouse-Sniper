@@ -14,22 +14,29 @@ def move_mouse():
     pyautogui.moveTo(x,y)
 
 def update_image():
-    win_height=400
-    win_width=225
-    colour="red"
     global ori_img
     global minx,maxx,miny,maxy
     (height,width)=pyautogui.size()
     img=ori_img.crop((minx,miny,maxx,maxy))
+    img=draw_grid(img)
+    img = ImageTk.PhotoImage(img)
+    return img
+
+def draw_grid(img):
+    colour="red"
+    win_height=400
+    win_width=225
     img = img.resize((win_height, win_width), Image.ANTIALIAS)
     draw= ImageDraw.Draw(img)
+    for x in range(1,9):
+        draw.line((win_height/9*x,0,win_height/9*x,win_width),fill="blue", width=2)
+    for x in range(1,9):
+        draw.line((0,win_width/9*x,win_height,win_width/9*x),fill="blue", width=2)
     draw.line((win_height/3,0,win_height/3,win_width),fill=colour, width=3)
     draw.line((win_height/3*2,0,win_height/3*2,win_width),fill=colour, width=3)
     draw.line((0,win_width/3*2,win_height,win_width/3*2),fill=colour, width=3)
     draw.line((0,win_width/3,win_height,win_width/3),fill=colour, width=3)
-    img = ImageTk.PhotoImage(img)
     return img
-
 
 def update_screen(e):
     move_mouse()
