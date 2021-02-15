@@ -99,7 +99,6 @@ def on_focus_in(e):
     reset(e) 
 
 root = tk.Tk()
-root.wm_attributes("-topmost", 1) #from https://stackoverflow.com/questions/3926655/how-to-keep-a-python-window-on-top-of-all-others-python-3-1
 root.title("Mouse Sniper")
 root.geometry("400x225+0+800")#this is hardcoded and shouldn't be
 img = update_image()
