@@ -14,7 +14,6 @@ At any point, press '-' to reset the zoom.
 
 
 # TODO 
- - [ ]  Multiple monitor support
  - [x]  double click, 
  - [ ]  drag, second click ect 
  - [ ]  Click in the preview window. 
@@ -37,6 +36,7 @@ At any point, press '-' to reset the zoom.
  - [x]  Second set of minor grids to so that it's obvious what button you are going to press next 
  - [ ]  Do a profile to work out where the time is taken. 
  - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
+ - [ ]  Change the zones so that you don't zoom *completely* in a section is selected - so something on the boarder can be reached from both (The other approach is to have shortcuts to move the window to one side or other) 
 
 
 # Statistics 
@@ -46,4 +46,3 @@ I'd like a statistics module - selfishly I'd like to know how many clicks I'm sa
  * Is it significantly faster when I do two number presses per refresh? 
 
 
->>>>>>> 5f3f8aaf78a257a37e79c84c797a57d7951f5f82
