@@ -4,6 +4,8 @@ from PIL import ImageTk, Image, ImageDraw
 
 minx=0
 miny=0
+stored_x=0
+stored_y=0
 (maxx,maxy)=pyautogui.size()
 ori_img=pyautogui.screenshot()
 
@@ -83,10 +85,33 @@ def key_pressed(e):
     print("Now {}:{}<x<{},{}<y<{},new_width,new_height".format(e.char,minx,maxx,miny,maxy))
     update_screen(e)
 
+def drag(e):
+    global stored_x, stored_y
+    print(stored_x)
+    # Store the co-ordinate
+    stored_x=(maxx+minx)/2
+    stored_y=(maxy+miny)/2
+    print("Co-ordinates stored") 
+
 def click(e): 
-    print("clicked") 
-    pyautogui.click()
-    reset(e)
+    global stored_x, stored_y
+    print(stored_x)
+    if stored_x > 0: #If there was a co-ordinate stored.
+        print("Executing Drag") 
+        # TODO, put in the drag  
+        #now reset them.  
+        pyautogui.moveTo(stored_x,stored_y)
+        x=(maxx+minx)/2
+        y=(maxy+miny)/2
+        duration=1 
+        pyautogui.dragTo(x,y,duration,button='left')
+        
+        stored_x=0
+        stored_y=0
+    else:
+        print("clicked") 
+        pyautogui.click()
+        reset(e)
 
 def doubleclick(e): 
     print("doubleclicked") 
@@ -106,6 +131,7 @@ panel = tk.Label(root, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
 root.bind("<KP_Enter>", doubleclick)
 root.bind("+", click)
+root.bind("-", drag)
 root.bind("1", key_pressed)
 root.bind("2", key_pressed)
 root.bind("3", key_pressed)
