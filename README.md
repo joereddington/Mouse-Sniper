@@ -1,7 +1,6 @@
 # Mouse-Sniper
 Fast keyboard control of mouse
 
-
 This script is based off the concept of [Quick Mouse](https://github.com/trishume/QuickMouse). I wanted to write my own because the original wasn't something I was capable of maintaining without learning ruby, and I fancied a quick project for the Xmas break. 
 
 The use case is: use your keyboards numberpad to replace a mouse for the occasional click. I've written this more for my own personal sport than for accessibility purposes, but accessibility is in the back of my mind. 
@@ -10,8 +9,12 @@ When the script is started, a preview window is shown. At the start, the preview
 
 When one of the numberpad keys is pressed, then the mouse moves to the centre of the targeted section and the preview window zooms in on that section, pressing another numberpad key refines the location until the desired target is under the cursor. At this point, you can press return to click. 
 
-At any point, press '-' to reset the zoom.    
-
+## Controls
+* 1-9	Zoom window in on relevent section of the screen
+* 0 	Reset zoom level
+* +	Single Click
+* <numberpad enter> Double Click
+* -	Save location as first location for a drag (the next click location initates the drag
 
 # TODO 
  - [x]  double click, 
