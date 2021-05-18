@@ -26,8 +26,8 @@ def update_image():
 
 def draw_grid(img):
     colour="red"
-    win_height=400
-    win_width=225
+    win_height=800
+    win_width=450
     img = img.resize((win_height, win_width), Image.ANTIALIAS)
     draw= ImageDraw.Draw(img)
     for x in range(1,9):
@@ -125,7 +125,7 @@ def on_focus_in(e):
 
 root = tk.Tk()
 root.title("Mouse Sniper")
-root.geometry("400x225+0+800")#this is hardcoded and shouldn't be
+root.geometry("800x450+1600+50")#this is hardcoded and shouldn't be
 img = update_image()
 panel = tk.Label(root, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
