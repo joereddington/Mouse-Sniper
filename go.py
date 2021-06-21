@@ -1,4 +1,5 @@
 import tkinter as tk
+import time
 import pyautogui
 from PIL import ImageTk, Image, ImageDraw
 
@@ -116,6 +117,7 @@ def click(e):
 def doubleclick(e): 
     print("doubleclicked") 
     pyautogui.click()
+    time.sleep(0.4)
     pyautogui.click()#clicking twice because the first makes the target application active. 
     reset(e)
 
