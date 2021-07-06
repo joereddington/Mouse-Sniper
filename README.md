@@ -14,11 +14,16 @@ When one of the numberpad keys is pressed, then the mouse moves to the centre of
 * 0 	Reset zoom level
 * +	Single Click
 * <numberpad enter> Double Click
-* -	Save location as first location for a drag (the next click location initates the drag
+* -	Save location as first location for a drag (the next single click location initiates the drag
 
 # TODO 
  - [x]  double click, 
- - [ ]  drag, second click ect 
+ - [x]  drag, 
+ - [ ]  Add a visual indicator (change colour of lines) when first drag point is taken. 
+ - [ ]  Better mnemonics for click, doublce click extra, use the other hand
+ - [ ]  Reset display after drag 
+ - [ ]  Reset display switches off drag. 
+ - [ ]  second click 
  - [ ]  Click in the preview window. 
  - [ ]  Keep the application selected
  - [ ]  Zoom out one level  

@@ -49,6 +49,7 @@ def update_screen(e):
 
 
 def reset(e):
+    #This doesn't reset stored and possible should? 
     global minx,maxx,miny,maxy,ori_img
     minx=0
     miny=0
