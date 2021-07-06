@@ -10,41 +10,43 @@ When the script is started, a preview window is shown. At the start, the preview
 When one of the numberpad keys is pressed, then the mouse moves to the centre of the targeted section and the preview window zooms in on that section, pressing another numberpad key refines the location until the desired target is under the cursor. At this point, you can press return to click. 
 
 ## Controls
-* 1-9	Zoom window in on relevent section of the screen
+* 1-9	Zoom window in on relevant section of the screen
 * 0 	Reset zoom level
 * +	Single Click
 * <numberpad enter> Double Click
 * -	Save location as first location for a drag (the next single click location initiates the drag
 
 # TODO 
- - [x]  double click, 
- - [x]  drag, 
+ - [ ]  Add a proper target in the middle of the screen that pinpoints the click. 
  - [ ]  Add a visual indicator (change colour of lines) when first drag point is taken. 
  - [ ]  Better mnemonics for click, doublce click extra, use the other hand
+ - [ ]  Change the zones so that you don't zoom *completely* in a section is selected - so something on the boarder can be reached from both (The other approach is to have shortcuts to move the window to one side or other) 
+ - [ ]  Click in the preview window. 
+ - [ ]  Do a profile to work out where the time is taken. 
+ - [ ]  Hotkey to start
+ - [ ]  It would be good if the screenshot periodically refreshed. 
+ - [ ]  Keep the application selected
+ - [ ]  Option to automatically focus on application window
  - [ ]  Reset display after drag 
  - [ ]  Reset display switches off drag. 
- - [ ]  second click 
- - [ ]  Click in the preview window. 
- - [ ]  Keep the application selected
- - [ ]  Zoom out one level  
- - [x]  proper 3 by 3 overlay in the preview window
- - [x]  Improve speed - cache the screenshot for example. 
- - [ ]  settings from command line: always on top? preview window off? 
+ - [ ]  Should be able to save the screenshot to the home directory (or clipboard) as a actual screenshot. 
  - [ ]  The screen should indicate (colour of grid) if the program is active. 
- - [x]  Always on top
- - [ ]  Option to automatically focus on application window
- - [ ]  Hotkey to start
- - [x]  Applications need two clicks, but the top menu needs one click.... 
+ - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
+ - [ ]  Zoom out one level  
  - [ ]  put into stackexchange code review. 
- - [x]  refactor a whole lot.        
+ - [ ]  second click 
+ - [ ]  settings from command line: always on top? preview window off? 
+ - [x]  Always on top
+ - [x]  Applications need two clicks, but the top menu needs one click.... 
  - [x]  Fix the 'tile cannot extend outside image' bug.  
- - [ ]  It would be good if the screenshot periodically refreshed. 
+ - [x]  Improve speed - cache the screenshot for example. 
  - [x]  On-mouse over would be nice. 
  - [x]  Screenshot should refresh whenever you tap to the system. 
  - [x]  Second set of minor grids to so that it's obvious what button you are going to press next 
- - [ ]  Do a profile to work out where the time is taken. 
- - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
- - [ ]  Change the zones so that you don't zoom *completely* in a section is selected - so something on the boarder can be reached from both (The other approach is to have shortcuts to move the window to one side or other) 
+ - [x]  double click, 
+ - [x]  drag, 
+ - [x]  proper 3 by 3 overlay in the preview window
+ - [x]  refactor a whole lot.        
 
 
 # Statistics 

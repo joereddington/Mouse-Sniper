@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter  import PhotoImage 
 import time
 import pyautogui
 from PIL import ImageTk, Image, ImageDraw
@@ -22,8 +23,7 @@ def update_image():
     (height,width)=pyautogui.size()
     img=ori_img.crop((minx,miny,maxx,maxy))
     img=draw_grid(img)
-    img = ImageTk.PhotoImage(img)
-    return img
+    return ImageTk.PhotoImage(img)
 
 def draw_grid(img):
     colour="red"
@@ -115,6 +115,14 @@ def click(e):
         pyautogui.click()
         reset(e)
 
+def save(e): 
+    fp="/Users/Shared/git/screenshot.png"
+    print("Saving to {}".format(fp))
+    img=ori_img.crop((minx,miny,maxx,maxy))
+    img.save(fp)
+
+
+
 def doubleclick(e): 
     print("doubleclicked") 
     pyautogui.click()
@@ -145,6 +153,8 @@ root.bind("7", key_pressed)
 root.bind("8", key_pressed)
 root.bind("9", key_pressed)
 root.bind("0", reset)
+root.bind("s", save)
+root.bind("S", save)
 root.bind("<FocusIn>", on_focus_in)
 root.mainloop()
 
