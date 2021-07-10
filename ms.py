@@ -1,4 +1,5 @@
 import tkinter as tk
+from configparser import ConfigParser
 from tkinter  import PhotoImage 
 import time
 import pyautogui
@@ -112,7 +113,7 @@ def click(e):
         stored_y=0
     else:
         print("clicked") 
-        pyautogui.click()
+        clickwrapper(e)
         reset(e)
 
 def save(e): 
@@ -122,17 +123,31 @@ def save(e):
     img.save(fp)
 
 
+def clickwrapper(e):
+    clicks=int(config.get('main','clicks'))
+    pyautogui.click()
+    clicks=clicks+1
+    config.set('main','clicks',str(clicks))
+    print("Clicks is now: {}".format(clicks))
+    with open('ms.ini', 'w') as f:
+        config.write(f)
 
 def doubleclick(e): 
     print("doubleclicked") 
-    pyautogui.click()
+    clickwrapper(e)
     time.sleep(0.4)
-    pyautogui.click()#clicking twice because the first makes the target application active. 
+    clickwrapper(e)#clicking twice because the first makes the target application active. 
     reset(e)
 
 def on_focus_in(e): 
     print("We have focus!") 
     reset(e) 
+
+
+
+config=ConfigParser()
+config.read('ms.ini')
+print("Clicks so far: {}".format(config.get('main','clicks')))
 
 root = tk.Tk()
 root.title("Mouse Sniper")
