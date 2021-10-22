@@ -7,25 +7,62 @@ import pyautogui
 from PIL import ImageTk, Image, ImageDraw
 
 
+class Box: 
+
+    def __init__(self):
+        self.minx=0
+        self.miny=0
+        (self.maxx,self.maxy)=pyautogui.size()
+
+    @property
+    def x(self):
+        return (self.maxx+self.minx)/2 
+
+    @property
+    def y(self):
+        return (self.maxy+self.miny)/2
+
+    def process_num_key(self, e):
+        height=self.maxy-self.miny
+        new_height=int(height/3)
+        width=self.maxx-self.minx
+        new_width=int(width/3)
+        if new_width<3:
+            print("Maximum Zoom level reached")
+            return
+        print("Before({}) :{}<x<{},{}<y<{}".format(e.char,self.minx,self.maxx,self.miny,self.maxy))
+        if (e.char in "123"):
+            self.miny=self.miny+new_height+new_height
+        if (e.char in "456"):
+            self.miny=self.miny+new_height
+            self.maxy=self.maxy-new_height
+        if (e.char in "789"):
+            self.maxy=self.miny+new_height
+        if (e.char in "741"):
+            self.maxx=self.minx+new_width
+        if (e.char in "852"):
+            self.minx=self.minx+new_width
+            self.maxx=self.maxx-new_width
+        if (e.char in "963"):
+            self.minx=self.minx+new_width+new_width
+        print("After ({}):{}<x<{},{}<y<{},new_width,new_height".format(e.char,self.minx,self.maxx,self.miny,self.maxy))
+
+vp=Box() 
+
 #TODO: MAYBE should be global 
-minx=0
-miny=0
 stored_x=0
 stored_y=0
-(maxx,maxy)=pyautogui.size()
 ori_img=pyautogui.screenshot()
 input_queue=[]
 
 
 def move_mouse(): 
-    x,y=get_x_y()
-    pyautogui.moveTo(x,y)
+    pyautogui.moveTo(vp.x,vp.y)
 
 def update_image():
     global ori_img
-    global minx,maxx,miny,maxy
-    (height,width)=pyautogui.size()
-    img=ori_img.crop((minx,miny,maxx,maxy))
+    global vp
+    img=ori_img.crop((vp.minx,vp.miny,vp.maxx,vp.maxy))
     img=draw_grid(img)
     return ImageTk.PhotoImage(img)
 
@@ -51,10 +88,8 @@ def update_screen():
     panel.image = img
 
 def reset_numbers():
-    global minx,maxx,miny,maxy,ori_img
-    minx=0
-    miny=0
-    (maxx,maxy)=pyautogui.size()
+    global vp 
+    vp=Box()
 
 def reset(e):
     #This doesn't reset stored and possible should? 
@@ -66,48 +101,20 @@ def back(e):
     input_queue.pop()
     process_queue(input_queue)
 
-
 def process_queue(input_queue):
     reset_numbers()
     for x in input_queue:
-        process_num_key(x)
+        vp.process_num_key(x)
     update_screen()
 
 def num_key_pressed(e): 
     input_queue.append(e) 
+    chars=[e.char for e in input_queue]
+    print(chars)
     process_queue(input_queue)
 
 
-def process_num_key(e):
-    global minx,maxx,miny,maxy
-    height=maxy-miny
-    new_height=int(height/3)
-    width=maxx-minx
-    new_width=int(width/3)
-    if new_width<3:
-        print("Don't want to zoom more")
-        return
-    print("{}:{}<x<{},{}<y<{},new_width,new_height".format(e.char,minx,maxx,miny,maxy))
-    if (e.char in "123"):
-        miny=miny+new_height+new_height
-    if (e.char in "456"):
-        miny=miny+new_height
-        maxy=maxy-new_height
-    if (e.char in "789"):
-        maxy=miny+new_height
-    if (e.char in "741"):
-        maxx=minx+new_width
-    if (e.char in "852"):
-        minx=minx+new_width
-        maxx=maxx-new_width
-    if (e.char in "963"):
-        minx=minx+new_width+new_width
-    print("Now {}:{}<x<{},{}<y<{},new_width,new_height".format(e.char,minx,maxx,miny,maxy))
 
-def get_x_y():
-    x=(maxx+minx)/2 
-    y=(maxy+miny)/2
-    return (x,y)
 
 
 
@@ -115,7 +122,8 @@ def drag(e):
     global stored_x, stored_y
     print(stored_x)
     # Store the co-ordinate
-    stored_x,stored_y=get_x_y()
+    stored_x=vp.x
+    sotred_y=vp.y
     print("Co-ordinates stored") 
 
 def click(e): 
@@ -126,10 +134,8 @@ def click(e):
         # TODO, put in the drag  
         #now reset them.  
         pyautogui.moveTo(stored_x,stored_y)
-        x,y=get_x_y()
         duration=1 
-        pyautogui.dragTo(x,y,duration,button='left')
-        
+        pyautogui.dragTo(vp.x,vp.y,duration,button='left')
         stored_x=0
         stored_y=0
     else:
