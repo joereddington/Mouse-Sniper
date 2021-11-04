@@ -47,11 +47,10 @@ class Box:
             self.minx=self.minx+new_width+new_width
         print("After ({}):{}<x<{},{}<y<{},new_width,new_height".format(e.char,self.minx,self.maxx,self.miny,self.maxy))
 
+# These are the global variables that we probably shouldn't have. 
 vp=Box() 
-
-#TODO: MAYBE should be global 
 stored_x=0
-stored_y=0
+stored_y=0 #TODO: these should be a stored box.  
 ori_img=pyautogui.screenshot()
 input_queue=[]
 
@@ -91,15 +90,20 @@ def reset_numbers():
     global vp 
     vp=Box()
 
-def reset(e):
-    #This doesn't reset stored and possible should? 
+def reset():
+    #TODO This doesn't reset stored and possible should it? 
     reset_numbers()
+    global ori_img
     ori_img = pyautogui.screenshot()
     update_screen()
     
 def back(e):
-    input_queue.pop()
-    process_queue(input_queue)
+    if input_queue: #Empty lists are false in python
+        input_queue.pop()
+        process_queue(input_queue)
+    else:   
+        print("The Queue is empty so we reset the screen") 
+        reset() #Entirely to update the screen  
 
 def process_queue(input_queue):
     reset_numbers()
@@ -114,10 +118,6 @@ def num_key_pressed(e):
     process_queue(input_queue)
 
 
-
-
-
-
 def drag(e):
     global stored_x, stored_y
     print(stored_x)
@@ -126,10 +126,17 @@ def drag(e):
     sotred_y=vp.y
     print("Co-ordinates stored") 
 
+
+def doubleclick(e): 
+    print("doubleclicked") 
+    clickwrapper(e)
+    time.sleep(0.4)
+    clickwrapper(e)#clicking twice because the first makes the target application active. 
+    reset()
+
 def click(e): 
-    global stored_x, stored_y
-    print(stored_x) #TODO: NO bare prints
-    if stored_x > 0: #If there was a co-ordinate stored.
+    global stored_x, stored_y #Because we're going to reset them
+    if stored_x: #If there was a co-ordinate stored. (there's an argument that the stored x could be a input_queue of it's own. 
         print("Executing Drag") 
         # TODO, put in the drag  
         #now reset them.  
@@ -141,7 +148,8 @@ def click(e):
     else:
         print("clicked") 
         clickwrapper(e)
-        reset(e)
+        reset()
+    global input_queue
     input_queue=[]
 
 def save(e): 
@@ -161,16 +169,10 @@ def clickwrapper(e):
     with open('ms.ini', 'w') as f:
         config.write(f)
 
-def doubleclick(e): 
-    print("doubleclicked") 
-    clickwrapper(e)
-    time.sleep(0.4)
-    clickwrapper(e)#clicking twice because the first makes the target application active. 
-    reset(e)
 
 def on_focus_in(e): 
     print("We have focus!") 
-    reset(e) 
+    reset() 
 
 
 def bind_keys(root):

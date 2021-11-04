@@ -17,7 +17,6 @@ When one of the numberpad keys is pressed, then the mouse moves to the centre of
 * -	Save location as first location for a drag (the next single click location initiates the drag
 
 # TODO 
- - [ ]  Add a proper target in the middle of the screen that pinpoints the click. 
  - [ ]  Add a visual indicator (change colour of lines) when first drag point is taken. 
  - [ ]  Better mnemonics for click, doublce click extra, use the other hand
  - [ ]  Change the zones so that you don't zoom *completely* in a section is selected - so something on the boarder can be reached from both (The other approach is to have shortcuts to move the window to one side or other) 
@@ -27,12 +26,10 @@ When one of the numberpad keys is pressed, then the mouse moves to the centre of
  - [ ]  It would be good if the screenshot periodically refreshed. 
  - [ ]  Keep the application selected
  - [ ]  Option to automatically focus on application window
- - [ ]  Reset display after drag 
- - [ ]  Reset display switches off drag. 
- - [ ]  Should be able to save the screenshot to the home directory (or clipboard) as a actual screenshot. 
+ - [x]  Should be able to save the screenshot to the home directory (or clipboard) as a actual screenshot. 
  - [ ]  The screen should indicate (colour of grid) if the program is active. 
  - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
- - [ ]  Zoom out one level  
+ - [x]  Zoom out one level  
  - [ ]  put into stackexchange code review. 
  - [ ]  second click 
  - [ ]  settings from command line: always on top? preview window off? 
@@ -47,6 +44,8 @@ When one of the numberpad keys is pressed, then the mouse moves to the centre of
  - [x]  drag, 
  - [x]  proper 3 by 3 overlay in the preview window
  - [x]  refactor a whole lot.        
+ - [x]  Object oriented
+ - [x]  Input recorded as a stack for 'replay' 
 
 
 # Statistics 
