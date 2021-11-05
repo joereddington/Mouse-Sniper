@@ -53,6 +53,7 @@ stored_x=0
 stored_y=0 #TODO: these should be a stored box.  
 ori_img=pyautogui.screenshot()
 input_queue=[]
+root = tk.Tk()
 
 
 def move_mouse(): 
@@ -186,14 +187,24 @@ def bind_keys(root):
     root.bind("S", save)
     root.bind("<FocusIn>", on_focus_in) #TODO: what does this do? 
 
+
+def hot_key_press():
+    root.wm_attributes("-topmost", 1)
+    root.focus_force()
+
+
+
 if __name__ == "__main__":
+
+    import keyboard
+    keyboard.add_hotkey('capslock', hot_key_press)
     config=ConfigParser()
     config.read('ms.ini')
     print("Clicks so far: {}".format(config.get('main','clicks')))
 
-    root = tk.Tk()
     root.title("Mouse Sniper")
     root.geometry("800x450+1600+50")#this is hardcoded and shouldn't be
+    root.attributes("-alpha",0.5)
     img = update_image()
     panel = tk.Label(root, image=img)
     panel.pack(side="bottom", fill="both", expand="yes")
