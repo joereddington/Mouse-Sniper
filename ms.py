@@ -96,6 +96,8 @@ def reset():
     global ori_img
     ori_img = pyautogui.screenshot()
     update_screen()
+    input_queue=[]
+
     
 def back(e):
     if input_queue: #Empty lists are false in python
@@ -107,9 +109,11 @@ def back(e):
 
 def process_queue(input_queue):
     reset_numbers()
+    print("Start queue")
     for x in input_queue:
         vp.process_num_key(x)
     update_screen()
+    print("end queue")
 
 def num_key_pressed(e): 
     input_queue.append(e) 
@@ -130,7 +134,7 @@ def drag(e):
 def doubleclick(e): 
     print("doubleclicked") 
     clickwrapper(e)
-    time.sleep(0.4)
+    time.sleep(0.2)
     clickwrapper(e)#clicking twice because the first makes the target application active. 
     reset()
 
