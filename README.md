@@ -5,7 +5,10 @@ This script is based off the concept of [Quick Mouse](https://github.com/trishum
 
 The use case is: use your keyboards numberpad to replace a mouse for the occasional click. I've written this more for my own personal sport than for accessibility purposes, but accessibility is in the back of my mind. 
 
-When the script is started, a preview window is shown. At the start, the preview window shows the whole screen. The preview window is split into nine zones, the nine zones are labeled according to the layout of keys on the numberpad. 
+When the script is started, a preview window is shown. At the start, the preview window shows the whole screen. The preview window is split into nine zones, the nine zones match the digitals 0-9 according to the layout of keys on the numberpad. 
+
+![Screenshot 2022-02-05 at 20 39 07](https://user-images.githubusercontent.com/4369547/152658282-da7fb988-e204-441f-8e78-0fca9b6b5fcd.png)
+
 
 When one of the numberpad keys is pressed, then the mouse moves to the centre of the targeted section and the preview window zooms in on that section, pressing another numberpad key refines the location until the desired target is under the cursor. At this point, you can press return to click. 
 
