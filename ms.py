@@ -97,6 +97,7 @@ def reset():
     ori_img = pyautogui.screenshot()
     update_screen()
     input_queue=[]
+    help()
 
     
 def back(e):
@@ -189,6 +190,21 @@ def bind_keys(root):
     root.bind("s", save)
     root.bind("S", save)
     root.bind("<FocusIn>", on_focus_in) #TODO: what does this do? 
+
+
+def help():
+    print("##########################") 
+    print(" Mouse Sniper 1.0 Joe Reddington")  
+    print("Contact joe@joereddington.com")  
+    print()
+    print("# Keys")
+    print("0-9 zoom in on screen")
+    print("+ - single click ")
+    print("NUMPAD_ENTER - double click ")
+    print("s/S - take screenshot")
+    print("- record first point of a drag (any other click executes)")
+    print("0 - zoom back out one level")
+
 
 if __name__ == "__main__":
     config=ConfigParser()
