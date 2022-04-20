@@ -29,13 +29,14 @@ When one of the numberpad keys is pressed, then the mouse moves to the centre of
  - [ ]  It would be good if the screenshot periodically refreshed. 
  - [ ]  Keep the application selected
  - [ ]  Option to automatically focus on application window
- - [x]  Should be able to save the screenshot to the home directory (or clipboard) as a actual screenshot. 
+ - [ ]  Sometimes needs a 'click here and then move the mouse to the second click' (as opposed to a drag, which is click and release)   
  - [ ]  The screen should indicate (colour of grid) if the program is active. 
  - [ ]  Would be occasionally nice to do a 2/3 zoom because the location I want is  on a boundary... (possibly with press and hold...) 
- - [x]  Zoom out one level  
  - [ ]  put into stackexchange code review. 
  - [ ]  second click 
  - [ ]  settings from command line: always on top? preview window off? 
+ - [x]  Should be able to save the screenshot to the home directory (or clipboard) as a actual screenshot. 
+ - [x]  Zoom out one level  
  - [x]  Always on top
  - [x]  Applications need two clicks, but the top menu needs one click.... 
  - [x]  Fix the 'tile cannot extend outside image' bug.  
