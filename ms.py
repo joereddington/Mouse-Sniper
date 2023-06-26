@@ -205,6 +205,9 @@ def help():
     print("- record first point of a drag (any other click executes)")
     print("0 - zoom back out one level")
 
+def stay_on_top():
+   root.lift()
+   root.after(2000, stay_on_top)
 
 if __name__ == "__main__":
     config=ConfigParser()
@@ -218,6 +221,7 @@ if __name__ == "__main__":
     panel = tk.Label(root, image=img)
     panel.pack(side="bottom", fill="both", expand="yes")
     bind_keys(root)
+    stay_on_top()
     root.mainloop()
 #TODO: <UP><DOWN> and so on should move the window slightly
 #TODO: should be a 'repeat position' option. Presumably the multiply * 
