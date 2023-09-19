@@ -5,6 +5,12 @@ from tkinter  import PhotoImage
 import time
 import pyautogui
 from PIL import ImageTk, Image, ImageDraw
+import PIL
+
+# So what's the best way to have this move between keypads? 
+# * Just replace the numbers and NOT bother too much 
+# * Have both live all the time. 
+# * have some boolean to change
 
 
 class Box: 
@@ -31,19 +37,19 @@ class Box:
             print("Maximum Zoom level reached")
             return
         print("Before({}) :{}<x<{},{}<y<{}".format(e.char,self.minx,self.maxx,self.miny,self.maxy))
-        if (e.char in "123"):
+        if (e.char in "123yui"):
             self.miny=self.miny+new_height+new_height
-        if (e.char in "456"):
+        if (e.char in "456hjk"):
             self.miny=self.miny+new_height
             self.maxy=self.maxy-new_height
-        if (e.char in "789"):
+        if (e.char in "789nm,"):
             self.maxy=self.miny+new_height
-        if (e.char in "741"):
+        if (e.char in "741yhn"):
             self.maxx=self.minx+new_width
-        if (e.char in "852"):
+        if (e.char in "852ujm"):
             self.minx=self.minx+new_width
             self.maxx=self.maxx-new_width
-        if (e.char in "963"):
+        if (e.char in "963ik,"):
             self.minx=self.minx+new_width+new_width
         print("After ({}):{}<x<{},{}<y<{},new_width,new_height".format(e.char,self.minx,self.maxx,self.miny,self.maxy))
 
@@ -68,7 +74,7 @@ def update_image():
 def draw_grid(img, colour="red"):
     win_height=800
     win_width=450
-    img = img.resize((win_height, win_width), Image.ANTIALIAS)
+    img = img.resize((win_height, win_width), PIL.Image.LANCZOS)
     draw= ImageDraw.Draw(img)
     for x in range(1,9):
         draw.line((win_height/9*x,0,win_height/9*x,win_width),fill="blue", width=2)
@@ -186,6 +192,8 @@ def bind_keys(root):
     root.bind("-", drag)
     for x in range(9):
         root.bind(str(x+1),num_key_pressed)
+    for x in {'y', 'u', 'i', 'h', 'j', 'k', 'n', 'm'}: 
+        root.bind(x,num_key_pressed) #Adding the other keys
     root.bind("0", back)
     root.bind("s", save)
     root.bind("S", save)
@@ -213,7 +221,6 @@ if __name__ == "__main__":
     config=ConfigParser()
     config.read('ms.ini')
     print("Clicks so far: {}".format(config.get('main','clicks')))
-
     root = tk.Tk()
     root.title("Mouse Sniper")
     root.geometry("800x450+1600+50")#this is hardcoded and shouldn't be
@@ -221,7 +228,7 @@ if __name__ == "__main__":
     panel = tk.Label(root, image=img)
     panel.pack(side="bottom", fill="both", expand="yes")
     bind_keys(root)
-    stay_on_top()
+#    stay_on_top()
     root.mainloop()
 #TODO: <UP><DOWN> and so on should move the window slightly
 #TODO: should be a 'repeat position' option. Presumably the multiply * 
